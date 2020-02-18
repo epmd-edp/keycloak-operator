@@ -33,4 +33,4 @@ kubectl patch -n <edp_cicd_project> -f deploy/operator.yaml --local=true --patch
 * Check the <edp_cicd_project> namespace that should contain Deployment with your operator in a running status.
 
 ### Local Development
-To setup local environment for developing operator use [Local Development](documentation/local-development.md) user guide.
+In order to develop the operator, first set up a local environment. For details, please refer to the [Local Development](documentation/local-development.md) page.
