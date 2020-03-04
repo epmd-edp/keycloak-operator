@@ -1,0 +1,13 @@
+name: keycloak-operator
+namespace: "oc-mr-3640-1-edp-cicd"
+platform: "openshift"
+cdPipelineName: ""
+cdPipelineStageName: ""
+dnsWildcard: ""
+database:
+  required: false
+ingress:
+  required: false
+image:
+  name: docker-registry.default.svc:5000/oc-green-edp-cicd/keycloak-operator-master
+  version: latest
