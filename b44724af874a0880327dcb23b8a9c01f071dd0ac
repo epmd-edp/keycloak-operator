@@ -1,0 +1,7 @@
+Verified+1: CI Jenkins
+Code-Review+2: Pavlo Yemelianov <pavlo_yemelianov@epam.com>
+Submitted-by: Pavlo Yemelianov <pavlo_yemelianov@epam.com>
+Submitted-at: Thu, 12 Mar 2020 12:53:38 +0000
+Reviewed-on: https://gerrit-oc-green-edp-cicd.delivery.aws.main.edp.projects.epam.com/c/keycloak-operator/+/492
+Project: keycloak-operator
+Branch: refs/heads/master
