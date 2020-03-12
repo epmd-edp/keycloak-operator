@@ -22,6 +22,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 	logf "sigs.k8s.io/controller-runtime/pkg/runtime/log"
 	"sigs.k8s.io/controller-runtime/pkg/source"
+	"time"
 )
 
 var log = logf.Log.WithName("controller_keycloakrealm")
@@ -96,7 +97,10 @@ func (r *ReconcileKeycloakRealm) Reconcile(request reconcile.Request) (reconcile
 	defer r.updateStatus(instance)
 
 	err = r.tryReconcile(instance)
-	instance.Status.Available = err == nil
+	if err != nil {
+		return reconcile.Result{RequeueAfter: helper.DefaultRequeueTime * time.Second}, err
+	}
+	instance.Status.Available = true
 
 	return reconcile.Result{}, err
 }

@@ -11,6 +11,7 @@ import (
 	"github.com/epmd-edp/keycloak-operator/pkg/client/keycloak"
 	"github.com/epmd-edp/keycloak-operator/pkg/client/keycloak/adapter"
 	"github.com/epmd-edp/keycloak-operator/pkg/client/keycloak/dto"
+	"github.com/epmd-edp/keycloak-operator/pkg/controller/helper"
 	"io/ioutil"
 	"k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
@@ -26,15 +27,15 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 	logf "sigs.k8s.io/controller-runtime/pkg/runtime/log"
 	"sigs.k8s.io/controller-runtime/pkg/source"
+	"time"
 )
 
 var log = logf.Log.WithName("controller_keycloak")
 
 const (
 	defaultRealmName = "openshift"
-
-	imgFolder    = "img"
-	keycloakIcon = "keycloak.svg"
+	imgFolder        = "img"
+	keycloakIcon     = "keycloak.svg"
 )
 
 /**
@@ -105,23 +106,23 @@ func (r *ReconcileKeycloak) Reconcile(request reconcile.Request) (reconcile.Resu
 	}
 	err = r.updateConnectionStatusToKeycloak(instance)
 	if err != nil {
-		return reconcile.Result{}, err
+		return reconcile.Result{RequeueAfter: helper.DefaultRequeueTime * time.Second}, err
 	}
 	con, err := r.isStatusConnected(request)
 	if err != nil {
-		return reconcile.Result{}, err
+		return reconcile.Result{RequeueAfter: helper.DefaultRequeueTime * time.Second}, err
 	}
 	if !con {
 		reqLogger.Info("Status is not connected")
-		return reconcile.Result{}, err
+		return reconcile.Result{RequeueAfter: helper.DefaultRequeueTime * time.Second}, err
 	}
 	err = r.putMainRealm(instance)
 	if err != nil {
-		return reconcile.Result{}, err
+		return reconcile.Result{RequeueAfter: helper.DefaultRequeueTime * time.Second}, err
 	}
 	err = r.putEDPComponent(instance)
 	if err != nil {
-		return reconcile.Result{}, err
+		return reconcile.Result{RequeueAfter: helper.DefaultRequeueTime * time.Second}, err
 	}
 
 	reqLogger.Info("Reconciling Keycloak has been finished")

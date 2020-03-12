@@ -12,6 +12,8 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 )
 
+const DefaultRequeueTime = 120
+
 func GetOwnerKeycloak(client client.Client, slave v1.ObjectMeta) (*v1alpha1.Keycloak, error) {
 	keycloak := &v1alpha1.Keycloak{}
 	err := getOwner(client, slave, keycloak, "Keycloak")
