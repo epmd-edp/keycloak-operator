@@ -8,14 +8,13 @@ import (
 	"github.com/epmd-edp/keycloak-operator/pkg/client/keycloak/adapter"
 	"github.com/epmd-edp/keycloak-operator/pkg/client/keycloak/dto"
 	"github.com/epmd-edp/keycloak-operator/pkg/controller/helper"
-	"k8s.io/apimachinery/pkg/types"
-	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
-
 	coreV1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/runtime"
+	"k8s.io/apimachinery/pkg/types"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/controller"
+	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
 	"sigs.k8s.io/controller-runtime/pkg/handler"
 	"sigs.k8s.io/controller-runtime/pkg/manager"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
@@ -99,6 +98,10 @@ func (r *ReconcileKeycloakClient) Reconcile(request reconcile.Request) (reconcil
 	defer r.updateStatus(instance)
 
 	err = r.tryReconcile(instance)
+	if err != nil {
+		r.setStatus(err, instance)
+		return reconcile.Result{RequeueAfter: helper.DefaultRequeueTime}, err
+	}
 	r.setStatus(err, instance)
 
 	return reconcile.Result{}, err

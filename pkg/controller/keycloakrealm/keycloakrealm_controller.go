@@ -96,7 +96,10 @@ func (r *ReconcileKeycloakRealm) Reconcile(request reconcile.Request) (reconcile
 	defer r.updateStatus(instance)
 
 	err = r.tryReconcile(instance)
-	instance.Status.Available = err == nil
+	if err != nil {
+		return reconcile.Result{RequeueAfter: helper.DefaultRequeueTime}, err
+	}
+	instance.Status.Available = true
 
 	return reconcile.Result{}, err
 }
