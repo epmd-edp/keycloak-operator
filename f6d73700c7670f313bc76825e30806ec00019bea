@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad00d93_d58f5657",
+        "filename": "pkg/controller/helper/controller_helper.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-03-12T11:59:33Z",
+      "side": 1,
+      "message": "Let\u0027s store duration const (120*time.Second)",
+      "revId": "f6d73700c7670f313bc76825e30806ec00019bea",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": false
+    }
+  ]
+}
