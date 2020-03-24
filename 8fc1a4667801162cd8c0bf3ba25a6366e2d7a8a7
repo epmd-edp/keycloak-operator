@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b913ddd_b0ebefb5",
+        "filename": "pkg/apis/v1/v1alpha1/keycloakclient_types.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-03-24T08:12:06Z",
+      "side": 1,
+      "message": "Let\u0027s call it AudRequired",
+      "range": {
+        "startLine": 22,
+        "startChar": 1,
+        "endLine": 22,
+        "endChar": 27
+      },
+      "revId": "8fc1a4667801162cd8c0bf3ba25a6366e2d7a8a7",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": false
+    }
+  ]
+}
