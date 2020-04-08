@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff8e143d_f3d0fde5",
+        "filename": "deploy-templates/values.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000007
+      },
+      "writtenOn": "2020-04-08T11:50:40Z",
+      "side": 1,
+      "message": "Keycloak operator version is v1.3.0-alpha",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 17
+      },
+      "revId": "98fcc32344232a366f0c6f63c098761f3cf754dd",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    }
+  ]
+}
