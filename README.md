@@ -15,6 +15,15 @@ _**NOTE:** Installation of operators is platform-independent, that is why there 
 
 _**NOTE:** It is highly recommended to use the latest released version._
 
+* Copy the main secret Keycloak
+```bash
+oc -n <edp_main_keycloak_project> get secret <edp_main_keycloak_secret> --export -o yaml | oc -n <edp_cicd_project> apply -f -
+```
+
+- _<edp_main_keycloak_project> - a EDP namespace with Keycloak application
+
+- _<edp_main_keycloak_secret> - a keycloak secret is in the EDP Keycloak namespace
+
 * Go to the unzipped directory and deploy operator:
 ```bash
 helm install keycloak-operator --namespace <edp_cicd_project> --set name=keycloak-operator --set namespace=<edp_cicd_project> --set platform=<platform_type> --set image.name=epamedp/keycloak-operator --set image.version=<operator_version> --set dnsWildcard=<dns_wildcard> deploy-templates
