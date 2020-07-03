@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e474062_f78a45c5",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000007
+      },
+      "writtenOn": "2020-07-03T09:49:17Z",
+      "side": 1,
+      "message": "Operator is cross-platform so we have to mention that this example is for Openshift or add another example for Kubernetes",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 82
+      },
+      "revId": "4dea69588c29997ac9db0ba8f083757314670136",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    }
+  ]
+}
