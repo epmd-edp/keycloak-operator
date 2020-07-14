@@ -1,14 +1,16 @@
-# How to Install Operator
+# Keycloak operator
 
-EDP installation can be applied on two container orchestration platforms: OpenShift and Kubernetes.
+## Overview
 
-_**NOTE:** Installation of operators is platform-independent, that is why there is a unified instruction for deploying._
+Keycloak operator is an EDP operator that is responsible for configuring existing Keycloak for integration with EDP. Operator installation can be applied on two container orchestration platforms: Openshift and Kubernetes.
 
+_**NOTE:** Operator is platform-independent, that is why there is an unified instruction for deploying._
 
 ### Prerequisites
 1. Linux machine or Windows Subsystem for Linux instance with [Helm 3](https://helm.sh/docs/intro/install/) installed;
 2. Cluster admin access to the cluster;
 3. EDP project/namespace is deployed by following one of the instructions: [edp-install-openshift](https://github.com/epmd-edp/edp-install/blob/master/documentation/openshift_install_edp.md#edp-project) or [edp-install-kubernetes](https://github.com/epmd-edp/edp-install/blob/master/documentation/kubernetes_install_edp.md#edp-namespace).
+
 
 ### Installation
 In order to install the Keycloak operator, follow the steps below:
@@ -24,6 +26,10 @@ In order to install the Keycloak operator, follow the steps below:
      epamedp/keycloak-operator      v2.4.0                          Helm chart for Golang application/service deplo...
      ```
 
+    _**NOTE:** It is highly recommended to use the latest released version._
+
+To work correctly Keycloak operator should have administrative access to Keycloak. It uses secret with credentials for this purpose. You can create such secret manually or from existing secret using these commands as examples:  
+
 Openshift:
 ```bash
 oc -n <edp_main_keycloak_project> get secret <edp_main_keycloak_secret> --export -o yaml | oc -n <edp_cicd_project> apply -f -
@@ -34,14 +40,13 @@ Kubernetes:
 kubectl -n <edp_main_keycloak_project> get secret <edp_main_keycloak_secret> --export -o yaml | kubectl -n <edp_cicd_project> apply -f -
 ```
 
+where parameters are:
  ```
     - <edp_main_keycloak_project>                   # namespace with deployed Keycloak;
     - <edp_main_keycloak_secret>                    # name of Keycloak secret;
  ```
 
-* Go to the unzipped directory and deploy operator:
-
-Parameters:
+Full available chart parameters list:
  ```
     - chart_version                                 # a version of Keycloak operator Helm chart;
     - global.edpName                                # a namespace or a project name (in case of OpenShift);
@@ -53,11 +58,9 @@ Parameters:
     - keycloak.url                                  # URL to Keycloak;
  ```
 
-_**NOTE:** Follow instruction to create namespace [edp-install-openshift](https://github.com/epmd-edp/edp-install/blob/master/documentation/openshift_install_edp.md#install-edp) or [edp-install-kubernetes](https://github.com/epmd-edp/edp-install/blob/master/documentation/kubernetes_install_edp.md#install-edp)._
-
-Inspect the sample of launching a Helm template for Keycloak operator installation:
+Install operator in the <edp_cicd_project> namespace with helm command. Bellow is the installation command example:
 ```bash
-helm install keycloak-operator epamedp/keycloak-operator --version <chart_version> --namespace <edp_cicd_project> --set name=keycloak-operator --set global.edpName=<edp_cicd_project> --set global.platform=<platform_type> deploy-templates
+helm install keycloak-operator epamedp/keycloak-operator --version <chart_version> --namespace <edp_cicd_project> --set name=keycloak-operator --set global.edpName=<edp_cicd_project> --set global.platform=<platform_type> 
 ```
 
 * Check the <edp_cicd_project> namespace that should contain Deployment with your operator in a running status
