@@ -1,0 +1,7 @@
+Verified+1: CI Jenkins
+Code-Review+2: Iryna Churkina <iryna_churkina@epam.com>
+Submitted-by: Iryna Churkina <iryna_churkina@epam.com>
+Submitted-at: Tue, 14 Jul 2020 13:47:55 +0000
+Reviewed-on: https://gerrit-oc-green-edp-cicd.delivery.aws.main.edp.projects.epam.com/c/keycloak-operator/+/3647
+Project: keycloak-operator
+Branch: refs/heads/master
